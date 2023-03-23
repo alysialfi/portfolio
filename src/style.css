@@ -1,8 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 :root {
+    --main-black: #0D0D0D;
+    --main-white: #F7F7F7;
+}
+:root {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: var(--main-black);
+    color: var(--main-white);
 }
