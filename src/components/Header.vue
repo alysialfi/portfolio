@@ -1,5 +1,128 @@
+<script setup>
+    import { onMounted, ref } from 'vue';
+    import gsap from 'gsap';
+
+    const title = ref(null);
+    const mustacheLeft = ref(null);
+    const mustacheRight = ref(null);
+    const subTitleLeft = ref(null);
+    const subTitleRight = ref(null);
+    const cat = ref(null);
+    const arrowDown = ref(null);
+
+    onMounted(() => {
+        gsap.from(title.value, {
+            delay: 0.5,
+            duration: 1,
+            y: '+120',
+            autoAlpha: 0,
+            ease: 'back.out(1.8)'
+        });
+
+        gsap.to(cat.value, {
+            duration: 2,
+            opacity: 1
+        });
+        gsap.to('#cat-face-inner', {
+            duration: 3,
+            opacity: 1
+        });
+        gsap.set(mustacheLeft.value, {
+            xPercent: 75
+        });
+        gsap.timeline({
+            trigger: mustacheLeft.value,
+            markers: true
+        }).to(mustacheLeft.value, {
+            duration: 1.5,
+            xPercent: 0,
+            transformOrigin: 'right',
+        })
+        gsap.from(mustacheLeft.value, {
+            delay: 0.5,
+            opacity: 0,
+            duration: (index) => {
+                return 0.75 + index * 0.25;
+            }
+        });
+
+        gsap.set(mustacheRight.value, {
+            xPercent: -75
+        });
+        gsap.timeline({
+            trigger: mustacheRight.value,
+            markers: true
+        }).to(mustacheRight.value, {
+            duration: 1.5,
+            xPercent: 0,
+            transformOrigin: 'left',
+        })
+        gsap.from(mustacheRight.value, {
+            delay: 0.5,
+            opacity: 0,
+            duration: (index) => {
+                return 0.75 + index * 0.25;
+            }
+        });
+
+        gsap.timeline().from(subTitleLeft.value, {
+            duration: 1,
+            y: 100,
+            ease: "power4.out",
+            delay: 1,
+            skewY: 10,
+            autoAlpha: 0,
+            stagger: {
+                amount: 0.3
+            }
+        })
+        gsap.timeline().from(subTitleRight.value, {
+            duration: 1,
+            y: -100,
+            ease: "power4.out",
+            delay: 1,
+            skewY: 10,
+            autoAlpha: 0,
+            stagger: {
+                amount: 0.3
+            }
+        })
+        gsap.to(arrowDown.value, {
+            duration: 0.6,
+            y: -20,
+            ease: 'circ.out',
+            repeat: -1,
+            yoyo: true
+        })
+    });
+
+    function animateCat(evt) {
+        const maxRot = 30;
+        const maxX = gsap.getProperty('#cat', 'width') * 0.75;
+        const maxXFace = gsap.getProperty('#cat-face', 'width') * 0.4;
+        const maxXBlueEye = gsap.getProperty('#cat-eye-blue', 'width') * 0.1;
+        const maxXRedEye = gsap.getProperty('#cat-eye-red', 'width') * 0.1;
+        const percent = gsap.utils.normalize(0, innerWidth, evt.pageX);
+
+        gsap.to('#cat', {
+            duration: 0.2,
+            transformPerspective: 1500,
+            x: percent * maxX - maxX / 2,
+            rotationY: -(percent * maxRot - maxRot / 2),
+            overwrite: true
+        });
+        gsap.to('#cat-face', {
+            duration: 0.2,
+            transformPerspective: 1000,
+            x: percent * maxXFace - maxXFace / 2,
+            rotationY: (percent * maxRot - maxRot / 2),
+            overwrite: true
+        });
+    }
+</script>
+
 <template>
-    <div class="relative w-full h-screen">
+    <div @mousemove="animateCat" class="relative w-full h-screen">
         <div class="w-full h-full hidden md:block">
             <img id="cat" ref="cat" src="../assets/images/header/cat.svg" alt="a lined big cat body"
             class="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-0 opacity-0">
