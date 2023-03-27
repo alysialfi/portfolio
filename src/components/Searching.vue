@@ -1,4 +1,27 @@
 <script setup>
+    import { onMounted, ref } from 'vue';
+    import gsap from 'gsap';
+    import { SteppedEase } from 'gsap';
+
+    const typedText = ref(null);
+
+    onMounted(() => {
+        gsap.fromTo(typedText.value, 4, {
+            width: '0',
+            }, {
+            scrollTrigger: '#Searching',
+            width: '320px',
+            ease:  SteppedEase.config(37)
+        }, 0);
+        gsap.fromTo(typedText.value, 0.3, {
+            'border-right-color': 'rgba(255,255,255,0.75)'
+            }, {
+            'border-right-color': 'rgba(255,255,255,0)',
+            repeat: -1,
+            ease:  SteppedEase.config(37)
+        }, 0);
+    })
+
 </script>
 
 <template>
