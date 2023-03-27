@@ -1,6 +1,7 @@
 <script setup>
     import { onMounted, ref } from 'vue';
     import gsap from 'gsap';
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
 
     const title = ref(null);
     const mustacheLeft = ref(null);
@@ -9,6 +10,7 @@
     const subTitleRight = ref(null);
     const cat = ref(null);
     const arrowDown = ref(null);
+    gsap.registerPlugin(ScrollTrigger);
 
     onMounted(() => {
         gsap.from(title.value, {
@@ -94,6 +96,14 @@
             repeat: -1,
             yoyo: true
         })
+        gsap.to("#desktop-view", {
+        scrollTrigger: {
+            trigger: "#header",
+            start: "center center",
+            scrub: true
+        },
+            opacity: 0
+        });
     });
 
     function animateCat(evt) {
@@ -122,8 +132,8 @@
 </script>
 
 <template>
-    <div @mousemove="animateCat" class="relative w-full h-screen">
-        <div class="w-full h-full hidden md:block">
+    <div id="header" @mousemove="animateCat" class="relative w-full h-screen">
+        <div id="desktop-view" class="w-full h-full hidden md:block">
             <img id="cat" ref="cat" src="../assets/images/header/cat.svg" alt="a lined big cat body"
             class="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-0 opacity-0">
             <div id="cat-face" class="h-[90%] w-full absolute bottom-0">
