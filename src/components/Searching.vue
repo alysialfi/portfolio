@@ -44,14 +44,23 @@
             }, {
             scrollTrigger: '#Searching',
             width: '320px',
-            ease:  SteppedEase.config(37)
+            ease:  SteppedEase.config(37),
+            onComplete: function() {
+                gsap.to(typedText.value, {
+                    duration: 0.2,
+                    opacity: 0
+                })
+                gsap.to('#search-box', 1.5, {
+                    opacity: 1
+                }, 0)
+            }
         }, 0);
         gsap.fromTo(typedText.value, 0.3, {
             'border-right-color': 'rgba(255,255,255,0.75)'
             }, {
             'border-right-color': 'rgba(255,255,255,0)',
             repeat: -1,
-            ease:  SteppedEase.config(37)
+            ease:  SteppedEase.config(37),
         }, 0);
     })
 
