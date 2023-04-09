@@ -34,7 +34,7 @@
 </script>
 
 <template>
-    <div class="w-full h-screen">
-        <h3>Connecting components in a page? Why not</h3>
+    <div id="Component" class="flex w-full h-screen items-end justify-center flex-wrap">
+        <div class="w-full font-semibold text-2xl text-center">Connecting components in a page? Why not</div>
     </div>
 </template>
