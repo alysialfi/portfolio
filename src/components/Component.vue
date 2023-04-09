@@ -1,6 +1,7 @@
 <script setup>
     import { onMounted, ref, reactive } from 'vue';
     import ProductDisplay from "./units/ProductDetail.vue";
+    import Cart from "./units/Cart.vue";
 
     const isModalOpen = ref(false)
     const states = reactive({
@@ -38,6 +39,10 @@
     <div id="Component" class="flex w-full h-screen items-end justify-center flex-wrap">
         <div class="w-full font-semibold text-2xl text-center">Connecting components in a page? Why not</div>
         <div class="relative w-4/5 px-32 pt-10 bg-white rounded-t-3xl bottom-0">
+            <div v-if="isModalOpen" @click="isModalOpen = false" class="absolute w-full h-full top-0 right-0 bg-black bg-opacity-50 z-0"></div>
+            <div class="flex justify-end mb-4">
+                <Cart :isModalOpen="isModalOpen" @toggle-modal="(val) => isModalOpen = val"></Cart>
+            </div>
             <ProductDisplay v-for="(product, p) in states.products" :key="p" :product="product" :colors="states.productColors" class="mb-4"></ProductDisplay>
         </div>
     </div>
