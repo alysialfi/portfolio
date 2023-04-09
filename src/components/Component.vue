@@ -1,5 +1,6 @@
 <script setup>
     import { onMounted, ref, reactive } from 'vue';
+    import ProductDisplay from "./units/ProductDetail.vue";
 
     const isModalOpen = ref(false)
     const states = reactive({
@@ -36,5 +37,8 @@
 <template>
     <div id="Component" class="flex w-full h-screen items-end justify-center flex-wrap">
         <div class="w-full font-semibold text-2xl text-center">Connecting components in a page? Why not</div>
+        <div class="relative w-4/5 px-32 pt-10 bg-white rounded-t-3xl bottom-0">
+            <ProductDisplay v-for="(product, p) in states.products" :key="p" :product="product" :colors="states.productColors" class="mb-4"></ProductDisplay>
+        </div>
     </div>
 </template>
