@@ -67,14 +67,14 @@
 </script>
 
 <template>
-    <div id="Searching" class="w-full h-screen">
-        <div class="flex w-full justify-center items-center">
-            <div id="typed-text" ref="typedText" class="border border-b-0 border-l-0 border-t-0 border-r-white whitespace-nowrap overflow-hidden">
+    <div id="Searching" class="w-full h-screen relative">
+        <div class="absolute flex w-full justify-center">
+            <div id="typedText" ref="typedText" class="border border-b-0 border-l-0 border-t-0 border-r-white whitespace-nowrap overflow-hidden">
                 <p id="text" class="text-lg text-center m-auto">these are pretty much what i do for living...</p>
             </div>
         </div>
         <div id="search-box" class="opacity-0 px-10 md:p-0">
-            <div class="w-full mt-28 text-center text-2xl font-semibold">API Consume/searching/filtering? Got em</div>
+            <div class="w-full mt-36 text-center text-2xl font-semibold">API Consume/searching/filtering? Got em</div>
             <div class="flex w-full justify-center">
                 <div class="m-auto w-full md:w-1/2 mt-6 relative">
                     <div class="w-full">
