@@ -4,7 +4,7 @@
 
     const props = defineProps([ 'isModalOpen', 'products' ])
     const emit = defineEmits([ 'get-product-for-cart' ])
-    const modalState = ref(true)
+    const modalState = ref(props.isModalOpen)
 
     function toggleModal() {
         return modalState.value = !modalState.value
