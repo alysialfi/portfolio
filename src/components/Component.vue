@@ -36,6 +36,11 @@
         ],
         productColors: [ 'blue', 'red', 'brown', 'yellow' ]
     })
+
+    function getOrRemoveProductCart(data) {
+        const selectedCartProduct = states.products.find((product) => product.id === data.id)
+        selectedCartProduct.amount = data.amount
+    }
 </script>
 
 <template>
@@ -44,9 +49,9 @@
         <div class="relative w-4/5 px-32 pt-10 bg-white rounded-t-3xl bottom-0">
             <div v-if="isModalOpen" @click="isModalOpen = false" class="absolute w-full h-full top-0 right-0 bg-black bg-opacity-50 z-0"></div>
             <div class="flex justify-end mb-4">
-                <Cart :isModalOpen="isModalOpen" @toggle-modal="(val) => isModalOpen = val"></Cart>
+                <Cart :isModalOpen="isModalOpen" :products="states.products" @toggle-modal="(val) => isModalOpen = val" @get-product-for-cart="getOrRemoveProductCart"></Cart>
             </div>
-            <ProductDisplay v-for="(product, p) in states.products" :key="p" :product="product" :colors="states.productColors" class="mb-4"></ProductDisplay>
+            <ProductDisplay v-for="(product, p) in states.products" :key="p" :product="product" :colors="states.productColors" @get-product-for-cart="getOrRemoveProductCart" class="mb-4"></ProductDisplay>
         </div>
     </div>
 </template>
