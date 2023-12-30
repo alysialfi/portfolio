@@ -1,5 +1,7 @@
 <script setup>
+    import Counter from './Counter.vue'
     defineProps([ 'product', 'colors' ])
+    const emit = defineEmits([ 'get-product-for-cart' ])
 
     function renderImgSrc(src) {
         return new URL(src, import.meta.url).href
@@ -12,6 +14,10 @@
             yellow: 'bg-yellow-400'
         }
         return colorLibs[color]
+    }
+
+    function getProductDetail(data) {
+        emit('get-product-for-cart', data)
     }
 </script>
 
@@ -28,21 +34,13 @@
         </div>
         <div class="flex items-center justify-between w-1/2 gap-8">
             <span class="w-1/3 text-right font-bold text-xl">${{ product.price }}</span>
-            <div class="flex gap-2 w-1/3 justify-end">
-                <span v-for="(color, c) in colors" :key="c" :class="getColorClass(color)" class="w-6 h-6 rounded-full cursor-pointer"></span>
+            <div class="flex gap-2 w-28 justify-end">
+                <div v-for="(color, c) in colors" :key="c" class="flex">
+                    <span @click="tes" :class="getColorClass(color)" class="w-6 h-6 rounded-full cursor-pointer"></span>
+                </div>
             </div>
-            <div class="flex items-center gap-2 w-1/3">
-                <button>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>                  
-                </button>
-                <span>5</span>
-                <button>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>                  
-                </button>
+            <div class="flex justify-end">
+                <Counter :item="product" @get-detail-data="getProductDetail"></Counter>
             </div>
         </div>
     </div>
