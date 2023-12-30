@@ -7,6 +7,7 @@
     const states = reactive({
         products: [
             {
+                id: 0,
                 thumbnail: '../../assets/images/products/red-backpack.png',
                 title: 'Red Backpack',
                 category: 'Woman bag',
@@ -16,6 +17,7 @@
                 amount: 0
             },
             {
+                id: 1,
                 thumbnail: '../../assets/images/products/anyaman-handbag.png',
                 title: 'Anyaman Hand Bag',
                 category: 'Woman bag',
@@ -25,6 +27,7 @@
                 amount: 0
             },
             {
+                id: 2,
                 thumbnail: '../../assets/images/products/navy-backpack.png',
                 title: 'Navy Backpack',
                 category: 'Man bag',
