@@ -12,7 +12,8 @@
                 category: 'Woman bag',
                 material: '80% leather 20% cotton',
                 selectedColor: 'red',
-                price: 30
+                price: 30,
+                amount: 0
             },
             {
                 thumbnail: '../../assets/images/products/anyaman-handbag.png',
@@ -20,7 +21,8 @@
                 category: 'Woman bag',
                 material: '80% leather 20% cotton',
                 selectedColor: 'brown',
-                price: 50
+                price: 50,
+                amount: 0
             },
             {
                 thumbnail: '../../assets/images/products/navy-backpack.png',
@@ -28,7 +30,8 @@
                 category: 'Man bag',
                 material: '80% cotton 20% polyester',
                 selectedColor: 'navy',
-                price: 30
+                price: 30,
+                amount: 0
             }
         ],
         productColors: [ 'blue', 'red', 'brown', 'yellow' ]
